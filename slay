@@ -88,18 +88,6 @@ if [ ! -d "$HOME/.bin/" ]; then
 fi
 
 # -----------------------------------------------------------------------------
-# Bash-it
-# -----------------------------------------------------------------------------
-if [ -d "$HOME/.bash_it" ]; then
-	print_success_muted "Bash-it already installed. Skipping."
-else
-	step "Installing Bash-it…"
-	git clone --depth=1 https://github.com/Bash-it/bash-it.git ~/.bash_it
-	~/.bash_it/install.sh --silent --no-modify-config
-	print_success "Bash-it installed!"
-fi
-
-# -----------------------------------------------------------------------------
 # NVM
 # -----------------------------------------------------------------------------
 if [ -x nvm ]; then
@@ -150,6 +138,20 @@ fi
 ###############################################################################
 chapter "Updating Homebrew formulae…"
 brew update
+
+###############################################################################
+# INSTALL: zsh
+###############################################################################
+chapter "Installing zsh and oh-my-zsh…"
+if ! brew ls --versions zsh > /dev/null; then
+        brew install zsh
+fi
+if ! brew ls --versions zsh-completions > /dev/null; then
+        brew install zsh-completions 
+fi
+if [ ! -d ~/.oh-my-zsh ]; then
+        sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+fi
 
 ###############################################################################
 # INSTALL: casks
@@ -223,7 +225,3 @@ else
 	print_warning "No ~/.hot-sauce found. Skipping."
 fi
 
-###############################################################################
-# 🍋🍋🍋🍋🍋🍋🍋🍋🍋🍋🍋🍋🍋🍋🍋🍋🍋🍋🍋🍋🍋🍋🍋🍋🍋🍋🍋🍋🍋🍋🍋🍋🍋🍋🍋🍋🍋🍋🍋🍋🍋
-###############################################################################
-e-lemon-ated
