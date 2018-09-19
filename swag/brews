@@ -3,3 +3,4 @@ mas
 wget
 yarn
 rbenv
+heroku/brew/heroku
