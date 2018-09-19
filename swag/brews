@@ -4,3 +4,4 @@ wget
 yarn
 rbenv
 heroku/brew/heroku
+python3
